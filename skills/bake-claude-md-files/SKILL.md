@@ -2,8 +2,6 @@
 name: bake-claude-md-files
 description: >
   Converts CLAUDE.md rules into automated checks (eslint, phpstan, pint, CI, etc.), removes the automated rules from CLAUDE.md, and verifies everything passes. Frees up agent context by replacing prose with tooling.
-
-
 user-invocable: true
 disable-model-invocation: true
 ---
