@@ -1,0 +1,4 @@
+node_modules
+
+# Generated and vendored Markdown
+CHANGELOG.md

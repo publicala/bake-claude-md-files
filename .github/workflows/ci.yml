@@ -1,0 +1,49 @@
+# Standard CI: enforces the Publica.la prose-style standard (the canonical
+# prettier.config.mjs plus soft-wrapped Markdown).
+#
+# Mirrors the Publica.la convention: gate jobs feed a single `ci-success`
+# aggregate, the only status check a branch-protection ruleset needs to require
+# on `main`. Adding or renaming a gate never touches the ruleset, just keep it
+# in `ci-success`'s `needs:` list.
+
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  # One run per ref. Superseded PR runs cancel for fast feedback. Runs on `main`
+  # never cancel each other, so every commit gets a complete `ci-success`.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
+jobs:
+  format:
+    runs-on: depot-ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # No local prettier: fetch it on demand, the way the prose-style standard
+      # runs it. Honors prettier.config.mjs and .prettierignore.
+      - run: npx --yes prettier@3 --check .
+
+  # The single status check a branch-protection ruleset requires on `main`.
+  # Runs even when a gate fails or is skipped (if: !cancelled()), but not when
+  # the run is cancelled, so a cancelled run reports as cancelled, not failed.
+  ci-success:
+    if: ${{ !cancelled() }}
+    needs: [format]
+    runs-on: depot-ubuntu-24.04
+    steps:
+      - uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
+        with:
+          jobs: ${{ toJSON(needs) }}

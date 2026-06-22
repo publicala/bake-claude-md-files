@@ -1,9 +1,9 @@
 ---
 name: bake-claude-md-files
 description: >
-  Converts CLAUDE.md rules into automated checks (eslint, phpstan, pint, CI, etc.),
-  removes the automated rules from CLAUDE.md, and verifies everything passes.
-  Frees up agent context by replacing prose with tooling.
+  Converts CLAUDE.md rules into automated checks (eslint, phpstan, pint, CI, etc.), removes the automated rules from CLAUDE.md, and verifies everything passes. Frees up agent context by replacing prose with tooling.
+
+
 user-invocable: true
 disable-model-invocation: true
 ---
@@ -13,6 +13,7 @@ Read all CLAUDE.md files in the project, along with the existing tool configurat
 Identify rules in the CLAUDE.md files that can be turned into automated checks. Every rule we can remove is context freed up for the agent.
 
 Before modifying any CLAUDE.md file, present a summary of:
+
 - Which rules will be automated (and by which tool)
 - Which rules will be kept (and why - e.g. requires human judgment, context-dependent)
 
