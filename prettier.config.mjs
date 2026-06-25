@@ -1,8 +1,13 @@
 /** @type {import("prettier").Config} */
 export default {
   proseWrap: "never",
-  embeddedLanguageFormatting: "off",
   overrides: [
+    {
+      files: ["*.md", "*.mdx"],
+      options: {
+        embeddedLanguageFormatting: "off",
+      },
+    },
     {
       files: ["*.yml", "*.yaml"],
       options: {

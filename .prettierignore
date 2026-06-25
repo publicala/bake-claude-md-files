@@ -1,4 +1,3 @@
 node_modules
-
-# Generated and vendored Markdown
-CHANGELOG.md
+vendor
+.claude/plans
