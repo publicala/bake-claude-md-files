@@ -15,7 +15,7 @@ Before modifying any CLAUDE.md file, present a summary of:
 - Which rules will be automated (and by which tool)
 - Which rules will be kept (and why - e.g. requires human judgment, context-dependent)
 
-Only proceed after the user approves. Then implement the automated checks, verify everything passes, and only remove a rule from CLAUDE.md after its corresponding check passes.
+Only proceed after the user approves. Then implement the automated checks, verify everything passes, and only remove a rule from CLAUDE.md after its corresponding check passes. Passing on the current tree is not enough: confirm the check's file globs cover the affected paths and that it runs before code lands (hook or CI).
 
 ## Implementation priority
 
@@ -28,6 +28,10 @@ Only proceed after the user approves. Then implement the automated checks, verif
    - CI pipeline steps
 3. **Custom scripts only as last resort** - only when no existing tool can express the check
 4. **Wire into existing runners** - new checks must run via existing test/lint commands, not new entrypoints
+
+## Keep prose when the feedback loop is late
+
+A format-time auto-fix corrects violations silently, so its prose can always go. A check that fails only at suite time (architecture test, CI step) corrects the agent after the code is written. When the surrounding code mostly violates the rule, neighbors teach the wrong pattern and the agent writes the violation first, every time. Keep a one-line prose rule next to that check, noting what enforces it.
 
 ## The trio
 
