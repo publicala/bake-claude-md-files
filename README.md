@@ -4,7 +4,7 @@
 
 Claude Code skill - converts CLAUDE.md rules into automated checks (eslint, phpstan, pint, CI, etc.), freeing up agent context.
 
-The inverse of [feed-claude-md-files](https://github.com/publicala/feed-claude-md-files-skill): `bake` converts crystallized prose rules into tooling once they're stable; `feed` adds prose rules from observed patterns.
+The CLAUDE.md trio: [feed-claude-md-files](https://github.com/publicala/feed-claude-md-files-skill) adds rules from observed patterns, [bake-claude-md-files](https://github.com/publicala/bake-claude-md-files-skill) converts crystallized rules into tooling, and [audit-claude-md-files](https://github.com/publicala/audit-claude-md-files-skill) prunes and verifies what remains. Install all three from [publicala/claude-plugins](https://github.com/publicala/claude-plugins).
 
 Inspired by [Matthieu Napoli's tweet](https://x.com/matthieunapoli/status/2024507469394039057). We extended the original prompt into a proper Claude Code skill with tooling-first priorities.
 
@@ -20,19 +20,17 @@ Rules that require human judgment are kept as-is.
 
 ## Install
 
-The repo doubles as a plugin marketplace (required by Claude Code for `plugin install` to work). `marketplace.json` points to the plugin in this same repo.
+### Via Plugin Marketplace
+
+```
+/plugin marketplace add publicala/claude-plugins
+/plugin install bake-claude-md-files@publicala
+```
 
 ### Via skills.sh
 
 ```bash
 npx skills add publicala/bake-claude-md-files-skill
-```
-
-### Via Plugin Marketplace
-
-```
-/plugin marketplace add publicala/bake-claude-md-files-skill
-/plugin install bake-claude-md-files@publicala
 ```
 
 ### Manual
@@ -51,17 +49,16 @@ cp skills/bake-claude-md-files/SKILL.md .claude/skills/bake-claude-md-files/
 
 ## Usage
 
-Both installation methods invoke the same skill:
-
 - **skills.sh / manual**: `/bake-claude-md-files`
-- **Plugin marketplace**: `/bake-claude-md-files:bake`
+- **Plugin marketplace**: `/bake-claude-md-files:bake-claude-md-files` (plugin skills are namespaced as `/<plugin>:<skill>`)
 
 ## Resources
 
-- [feed-claude-md-files](https://github.com/publicala/feed-claude-md-files-skill) - The inverse skill: surfaces patterns into new CLAUDE.md rules
-- [CLAUDE.md Guide](https://github.com/publicala/claude-md-guide) - Presentation slides about CLAUDE.md files
-- [CLAUDE.md docs](https://docs.anthropic.com/en/docs/claude-code/memory) - Official documentation
-- [Matthieu Napoli's tweet](https://x.com/matthieunapoli/status/2024507469394039057) - Original inspiration
+- [feed-claude-md-files](https://github.com/publicala/feed-claude-md-files-skill) — surfaces patterns into new CLAUDE.md rules
+- [audit-claude-md-files](https://github.com/publicala/audit-claude-md-files-skill) — prunes CLAUDE.md files with evidence-backed cuts
+- [CLAUDE.md Guide](https://github.com/publicala/claude-md-guide) — Presentation slides about CLAUDE.md files
+- [CLAUDE.md docs](https://docs.anthropic.com/en/docs/claude-code/memory) — Official documentation
+- [Matthieu Napoli's tweet](https://x.com/matthieunapoli/status/2024507469394039057) — Original inspiration
 
 ## License
 
