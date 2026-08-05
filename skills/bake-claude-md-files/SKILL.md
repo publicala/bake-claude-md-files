@@ -28,3 +28,11 @@ Only proceed after the user approves. Then implement the automated checks, verif
    - CI pipeline steps
 3. **Custom scripts only as last resort** - only when no existing tool can express the check
 4. **Wire into existing runners** - new checks must run via existing test/lint commands, not new entrypoints
+
+## The trio
+
+- `feed-claude-md-files` adds rules from observed patterns
+- `bake-claude-md-files` converts crystallized rules into tooling and removes the prose
+- `audit-claude-md-files` prunes and verifies what remains
+
+Run `feed` after a working session, `bake` once enough rules have accumulated to be worth automating, and `audit` when CLAUDE.md files have grown without review.
