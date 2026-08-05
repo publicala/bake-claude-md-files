@@ -35,10 +35,11 @@ Only proceed after the user approves. Then implement the automated checks, verif
 
 A format-time auto-fix corrects violations silently, so its prose can always go. A check that fails only at suite time (architecture test, CI step) corrects the agent after the code is written. When the surrounding code mostly violates the rule, neighbors teach the wrong pattern and the agent writes the violation first, every time. Keep a one-line prose rule next to that check, noting what enforces it.
 
-## The trio
+## The quartet
 
 - `feed-claude-md-files` adds rules from observed patterns
 - `bake-claude-md-files` converts crystallized rules into tooling and removes the prose
 - `audit-claude-md-files` prunes and verifies what remains
+- `split-claude-md-files` moves what remains to the scope that reads it
 
-Run `feed` after a working session, `bake` once enough rules have accumulated to be worth automating, and `audit` when CLAUDE.md files have grown without review.
+Run `feed` after a working session, `bake` once enough rules have accumulated to be worth automating, `audit` when CLAUDE.md files have grown without review, and `split` after an audit leaves a resident file carrying rules that govern one area.
