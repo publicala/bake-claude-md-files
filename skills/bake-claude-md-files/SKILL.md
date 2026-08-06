@@ -24,7 +24,7 @@ Only proceed after the user approves. Then implement the automated checks, verif
 1. **Discover existing tooling first** - inventory linters, test frameworks, static analyzers, CI pipelines, and git hooks before implementing anything
 2. **Use native capabilities** - express checks through tools already in the project:
    - Linter/formatter rules (ESLint, Biome, Prettier, Pint, Ruff, gofmt)
-   - Static analysis (TypeScript strict, PHPStan, mypy, Rector)
+   - Static analysis, including authoring custom rules (TypeScript strict, PHPStan strictness levels and custom PHPStan rules, mypy, Rector)
    - Architecture tests (Pest arch, ArchUnit, dependency-cruiser)
    - Structural search and lint (ast-grep) for syntax-shaped rules a stock linter cannot express (a banned call pattern, a required argument shape)
    - Git hooks (Lefthook, Husky, pre-commit)
