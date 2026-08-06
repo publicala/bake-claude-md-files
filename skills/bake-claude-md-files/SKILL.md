@@ -26,8 +26,10 @@ Only proceed after the user approves. Then implement the automated checks, verif
    - Linter/formatter rules (ESLint, Biome, Prettier, Pint, Ruff, gofmt)
    - Static analysis (TypeScript strict, PHPStan, mypy, Rector)
    - Architecture tests (Pest arch, ArchUnit, dependency-cruiser)
+   - Structural search and lint (ast-grep) for syntax-shaped rules a stock linter cannot express (a banned call pattern, a required argument shape)
    - Git hooks (Lefthook, Husky, pre-commit)
    - CI pipeline steps
+   - Agent-harness hooks (Claude Code PreToolUse deny rules) for rules about how a command is invoked (a required flag, a banned subcommand), which no linter or code check can see
 3. **Custom scripts only as last resort** - only when no existing tool can express the check
 4. **Wire into existing runners** - new checks must run via existing test/lint commands, not new entrypoints
 
