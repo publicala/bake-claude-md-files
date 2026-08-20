@@ -17,6 +17,8 @@ Before modifying any CLAUDE.md file, present a summary of:
 - Which rules will be automated (and by which tool)
 - Which rules will be kept (and why - e.g. requires human judgment, context-dependent)
 
+Ask first (one AskUserQuestion) whether the user wants that summary as an interactive artifact or as plain text. The artifact is a live doc (`capabilities: {artifact: {}}`): one row per rule with its repo-relative source file, the proposed enforcement tool, an approve checkbox, a free-text input for objections, and a copy-decisions control as the fallback path back into the session.
+
 Only proceed after the user approves. Then implement the automated checks, verify everything passes, and only remove a rule from CLAUDE.md after its corresponding check passes. Passing on the current tree is not enough: confirm the check's file globs cover the affected paths and that it runs before code lands (hook or CI).
 
 ## Implementation priority
