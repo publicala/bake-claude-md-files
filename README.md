@@ -1,5 +1,7 @@
 # bake-claude-md-files
 
+> [!IMPORTANT] **This repo has moved.** The skill now lives as `/bonsai:bake` in the [bonsai plugin](https://github.com/publicala/claude-plugins/tree/main/plugins/bonsai) inside [publicala/claude-plugins](https://github.com/publicala/claude-plugins). Install with `/plugin marketplace add publicala/claude-plugins` then `/plugin install bonsai@publicala`. This repo is archived and kept for history.
+
 ![bake-claude-md-files banner](banner.png)
 
 Claude Code skill - converts CLAUDE.md rules into automated checks (eslint, phpstan, pint, CI, etc.), freeing up agent context.
